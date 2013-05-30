@@ -3,7 +3,7 @@ Timecon
 
 Project get your system log events and parse it for know how many hours you work in this month.
 
-FYI It can not works if  you do not shutdown or turn to sleep mode your PC after work.
+FYI It can not works if  you do not shutdown or turn to sleep mode or lock your PC after work.
 
 
 
