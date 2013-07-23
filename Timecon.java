@@ -91,6 +91,7 @@ public class Timecon {
 		out.write("\tTotal worked time:\t" + pt(sum) + NL);
 		out.write("\tDays:\t" + daysCounter + " Avarage:\t" + pt(sum / daysCounter) + NL);
 
+
 		in1.close();
 		in2.close();
 		out.close();
@@ -98,16 +99,17 @@ public class Timecon {
 	}
 
 
+
     private long durr = 0;
     private Calendar calDay = Calendar.getInstance();
+
+
 	void print(Writer out, Date p, Date p2) throws Exception {
 		if (p2 == null || p.getTime() >= p2.getTime() || !ymd.format(p2).equals(ymd.format(p))) {
 			System.out.println(p2 + "-" + p);
 			out.write(String.format("dt:%s only one date %s\r\n", ymd.format(p),sfTime.format(p)));
 			return;
 		}
-
-
 
 		long dur = (p2.getTime() - p.getTime()) / 1000;
 		sum += dur;
