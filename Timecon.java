@@ -12,7 +12,7 @@ import java.util.regex.*;
  * наеяоевемхъ.
  * 
  * @author akv
- * @version 1.0.2
+ * @version 1.1.0
  */
 public class Timecon {
 	private static final String NL = "\r\n";
@@ -86,9 +86,10 @@ public class Timecon {
 		if (ymdNow.equals(ymd.format(dt))) {
 			print(out, prev, now);
 		}
-
-		out.write("Total:\t" + pt(sum) + NL);
-		out.write("Days:\t" + daysCounter + " Avarage:\t" + pt(sum / daysCounter) + NL);
+		out.write(NL + NL);
+        out.write("\tTotal overworked time:\t" + pt(durr) + NL);
+		out.write("\tTotal worked time:\t" + pt(sum) + NL);
+		out.write("\tDays:\t" + daysCounter + " Avarage:\t" + pt(sum / daysCounter) + NL);
 
 		in1.close();
 		in2.close();
@@ -96,6 +97,9 @@ public class Timecon {
 		System.out.println("Done");
 	}
 
+
+    private long durr = 0;
+    private Calendar calDay = Calendar.getInstance();
 	void print(Writer out, Date p, Date p2) throws Exception {
 		if (p2 == null || p.getTime() >= p2.getTime() || !ymd.format(p2).equals(ymd.format(p))) {
 			System.out.println(p2 + "-" + p);
@@ -103,9 +107,19 @@ public class Timecon {
 			return;
 		}
 
+
+
 		long dur = (p2.getTime() - p.getTime()) / 1000;
 		sum += dur;
-		daysCounter++;
+
+		calDay.setTime(p);
+		if (calDay.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY && calDay.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY)
+			daysCounter++;
+		else out.write("!!!");
+
+		out.write("\t"); //akv first column for info (like !!!)
+
+		durr += dur - NORMA_8_30;
 		out.write(String.format("dt:%s;\t%s-%s;\t%s;\t%s\r\n", ymd.format(p), sfTime.format(p), sfTime.format(p2),
 				pt(dur), pt(dur - NORMA_8_30)));
 	}
