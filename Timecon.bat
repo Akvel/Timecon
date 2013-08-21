@@ -2,7 +2,7 @@
 del ev.txt 2> nul
 
 
-wevtutil qe Security /rd:false /f:text "/q:*[EventData[Data[@Name='LogonType']=7 or Data[@Name='LogonType']=2]  or System[Task=12548]]">events_1.txt
+wevtutil qe Security /rd:false /f:text "/q:*[EventData[Data[@Name='LogonType']=7 or Data[@Name='LogonType']=2 and Data[@SubjectDomainName!='%username%']]  or System[Task=12548]]">events_1.txt
 wevtutil qe System /rd:false /f:text "/q:*[System[Provider[@Name='Microsoft-Windows-Kernel-General']]]">events_2.txt
 
 javac Timecon.java
