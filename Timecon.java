@@ -81,8 +81,6 @@ public class Timecon {
 				
 				if (!userName.equals("User: N/A"))
 					dtList.add(sfEvents.parse(m.group(1)));
-				
-				dtList.add(sfEvents.parse(m.group(1)));
 			}
 		}
 
