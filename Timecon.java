@@ -52,13 +52,36 @@ public class Timecon {
 		while ((l = in1.readLine()) != null) {
 			Matcher m = p.matcher(l);
 			if (m.find()) {
-				dtList.add(sfEvents.parse(m.group(1)));
+				
+				
+				//skip all events with User: N/A
+				//
+				String userName;
+				do {
+					userName = in1.readLine().trim();
+				}	while (!userName.startsWith("User:"));
+				
+				if (!userName.equals("User: N/A"))
+					dtList.add(sfEvents.parse(m.group(1)));
+				
+				
 			}
 		}
 
 		while ((l = in2.readLine()) != null) {
 			Matcher m = p.matcher(l);
 			if (m.find()) {
+				
+				//skip all events with User: N/A
+				//
+				String userName;
+				do {
+					userName = in2.readLine().trim();
+				}	while (!userName.startsWith("User:"));
+				
+				if (!userName.equals("User: N/A"))
+					dtList.add(sfEvents.parse(m.group(1)));
+				
 				dtList.add(sfEvents.parse(m.group(1)));
 			}
 		}
