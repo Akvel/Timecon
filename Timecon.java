@@ -4,14 +4,14 @@ import java.util.*;
 import java.util.regex.*;
 
 /**
- * ѕрограмма дл€ самосто€тельного учета времени работы
+ * √П√∞√Ѓ√£√∞√†√ђ√ђ√† √§√Ђ√њ √±√†√ђ√Ѓ√±√≤√Ѓ√њ√≤√•√Ђ√Љ√≠√Ѓ√£√Ѓ √≥√Ј√•√≤√† √Ґ√∞√•√ђ√•√≠√® √∞√†√°√Ѓ√≤√ї
  * 
- * ѕ–ќ√–јћћј ѕќ—“ј¬Ћя≈“—я ѕќ ѕ–»Ќ÷»ѕ” " ј  ≈—“№" ("AS IS"). Ќ» ј »’ √ј–јЌ“»… Ќ≈ ѕ–»Ћј√ј≈“—я » Ќ≈ ѕ–≈ƒ”—ћј“–»¬ј≈“—я. ¬џ
- * »—ѕќЋ№«”≈“≈ Ё“ќ ѕ–ќ√–јћћЌќ≈ ќЅ≈—ѕ≈„≈Ќ»≈ Ќј —¬ќ… —“–ј’ » –»— . ј¬“ќ– Ќ≈ Ѕ”ƒ≈“ ќ“¬≈„ј“№ Ќ» «ј  ј »≈ ѕќ“≈–» »Ћ»
- * »— ј∆≈Ќ»я ƒјЌЌџ’, ЋёЅ”ё ”ѕ”ў≈ЌЌ”ё ¬џ√ќƒ” ¬ ѕ–ќ÷≈——≈ »—ѕќЋ№«ќ¬јЌ»я »Ћ» Ќ≈ѕ–ј¬»Ћ№Ќќ√ќ »—ѕќЋ№«ќ¬јЌ»я Ё“ќ√ќ ѕ–ќ√–јћћЌќ√ќ
- * ќЅ≈—ѕ≈„≈Ќ»я.
+ * √П√Р√О√Г√Р√А√М√М√А √П√О√С√Т√А√В√Л√Я√Е√Т√С√Я √П√О √П√Р√И√Н√Ц√И√П√У "√К√А√К √Е√С√Т√Ь" ("AS IS"). √Н√И√К√А√К√И√Х √Г√А√Р√А√Н√Т√И√Й √Н√Е √П√Р√И√Л√А√Г√А√Е√Т√С√Я √И √Н√Е √П√Р√Е√Д√У√С√М√А√Т√Р√И√В√А√Е√Т√С√Я. √В√Ы
+ * √И√С√П√О√Л√Ь√З√У√Е√Т√Е √Э√Т√О √П√Р√О√Г√Р√А√М√М√Н√О√Е √О√Б√Е√С√П√Е√Ч√Е√Н√И√Е √Н√А √С√В√О√Й √С√Т√Р√А√Х √И √Р√И√С√К. √А√В√Т√О√Р √Н√Е √Б√У√Д√Е√Т √О√Т√В√Е√Ч√А√Т√Ь √Н√И √З√А √К√А√К√И√Е √П√О√Т√Е√Р√И √И√Л√И
+ * √И√С√К√А√Ж√Е√Н√И√Я √Д√А√Н√Н√Ы√Х, √Л√Ю√Б√У√Ю √У√П√У√Щ√Е√Н√Н√У√Ю √В√Ы√Г√О√Д√У √В √П√Р√О√Ц√Е√С√С√Е √И√С√П√О√Л√Ь√З√О√В√А√Н√И√Я √И√Л√И √Н√Е√П√Р√А√В√И√Л√Ь√Н√О√Г√О √И√С√П√О√Л√Ь√З√О√В√А√Н√И√Я √Э√Т√О√Г√О √П√Р√О√Г√Р√А√М√М√Н√О√Г√О
+ * √О√Б√Е√С√П√Е√Ч√Е√Н√И√Я.
  * 
- * @author akv
+ * @author akvel
  * @version 1.1.0
  */
 public class Timecon {
@@ -52,35 +52,14 @@ public class Timecon {
 		while ((l = in1.readLine()) != null) {
 			Matcher m = p.matcher(l);
 			if (m.find()) {
-				
-				
-				//skip all events with User: N/A
-				//
-				String userName;
-				do {
-					userName = in1.readLine().trim();
-				}	while (!userName.startsWith("User:"));
-				
-				if (!userName.equals("User: N/A"))
-					dtList.add(sfEvents.parse(m.group(1)));
-				
-				
+				dtList.add(sfEvents.parse(m.group(1)));
 			}
 		}
 
 		while ((l = in2.readLine()) != null) {
 			Matcher m = p.matcher(l);
 			if (m.find()) {
-				
-				//skip all events with User: N/A
-				//
-				String userName;
-				do {
-					userName = in2.readLine().trim();
-				}	while (!userName.startsWith("User:"));
-				
-				if (!userName.equals("User: N/A"))
-					dtList.add(sfEvents.parse(m.group(1)));
+				dtList.add(sfEvents.parse(m.group(1)));
 			}
 		}
 
@@ -140,7 +119,7 @@ public class Timecon {
 			daysCounter++;
 		else out.write("!!!");
 
-		out.write("\t"); //akv first column for info (like !!!)
+		out.write("\t"); //first column for info (like !!!)
 
 		durr += dur - NORMA_8_30;
 		out.write(String.format("dt:%s;\t%s-%s;\t%s;\t%s\r\n", ymd.format(p), sfTime.format(p), sfTime.format(p2),
