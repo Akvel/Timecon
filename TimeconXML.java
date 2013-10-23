@@ -105,8 +105,9 @@ public class TimeconXML {
 			if (qName.equals("Event")){
 				isEvent = false;
 				
-				if (!isBadEvent)
+				if (!isBadEvent){
 					dtList.add(TimeCreated);
+				}
 			}
 			
 			if (qName.equals("EventID")){
@@ -177,9 +178,6 @@ public class TimeconXML {
 		Date pred2 = null;
 		Date dt = null;
 
-		
-		String l;
-
 		Collections.sort(saxp.dtList);
 		for (Date date : saxp.dtList) {
 			
@@ -222,7 +220,6 @@ public class TimeconXML {
 
 	void print(Writer out, Date p, Date p2) throws Exception {
 		if (p2 == null || p.getTime() >= p2.getTime() || !ymd.format(p2).equals(ymd.format(p))) {
-			System.out.println(p2 + "-" + p);
 			out.write(String.format("dt:%s only one date %s\r\n", ymd.format(p),sfTime.format(p)));
 			return;
 		}
@@ -230,14 +227,18 @@ public class TimeconXML {
 		long dur = (p2.getTime() - p.getTime()) / 1000;
 		sum += dur;
 
+		calDay.setTimeZone(TimeZone.getTimeZone("GMT"));
 		calDay.setTime(p);
-		if (calDay.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY && calDay.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY)
+		if (calDay.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY && calDay.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY){
 			daysCounter++;
-		else out.write("!!!");
+			durr += dur - NORMA_8_30;
+		}
+		else{ out.write("!!!");
+			durr += dur;
+		}
 
 		out.write("\t"); // first column for info (like !!!)
 
-		durr += dur - NORMA_8_30;
 		out.write(String.format("dt:%s;\t%s-%s;\t%s;\t%s\r\n", ymd.format(p), sfTime.format(p), sfTime.format(p2),
 				pt(dur), pt(dur - NORMA_8_30)));
 	}
