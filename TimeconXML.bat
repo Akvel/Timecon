@@ -11,8 +11,8 @@ java TimeconXML
 
 del TimeconXML.class
 del TimeconXML$SAXPars.class
-rem del events_1.xml
-rem del events_2.xml
+del events_1.xml
+del events_2.xml
 
 call notepad ev.txt
 
